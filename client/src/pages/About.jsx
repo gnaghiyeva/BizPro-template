@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import aboutStyle from '../styles/about.module.css'
 import Swal from 'sweetalert2'
 import {Link} from 'react-router-dom'
+import { TextField } from '@mui/material';
 const About = () => {
   const [models, setModels] = useState([])
   useEffect(() => {
@@ -17,6 +18,13 @@ const About = () => {
       setModels(res.data)
     })
   })
+
+
+  function handleChange(e){
+    getAllModels(e.target.value).then((res)=>{
+      setModels(res)
+    })
+  }
   return (
     <>
 
@@ -26,6 +34,14 @@ const About = () => {
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br />
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
         </article>
+
+        <TextField  
+          onChange={(e)=>handleChange(e)}
+          id="outlined-basic"
+          label="Search Author"
+          variant="outlined"/>
+
+        
         <Grid className={aboutStyle.about_row} container spacing={3} style={{width:'70%', margin:'0 auto'}} >
           {models && models.map((model) => {
             return (

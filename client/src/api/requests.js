@@ -1,13 +1,28 @@
 import { BASE_URL } from "./base_url";
 import axios from 'axios'
-export const getAllModels = async()=>{
-    let globalData;
-   await axios.get(`${BASE_URL}/bizPro`).then((res)=>{
-    globalData=res.data
-   })
-   return globalData;
-}
+// export const getAllModels = async()=>{
+//     let globalData;
+//    await axios.get(`${BASE_URL}/bizPro`).then((res)=>{
+//     globalData=res.data
+//    })
+//    return globalData;
+// }
 
+export const getAllModels = async(name)=>{
+    let globalData;
+    let URL;
+    if(!name){
+        URL=BASE_URL+"/bizPro"
+    }
+    else{
+        URL=BASE_URL+"/bizPro/"+`?name=${name}`
+    }
+
+    await axios.get(URL).then((res)=>{
+        globalData=res.data
+    })
+    return globalData
+}
 export const getModelById = async(id)=>{
     let globalData;
     await axios.get(`${BASE_URL}/bizPro/${id}`).then((res)=>{
@@ -25,7 +40,7 @@ export const deleteModel = async(id)=>{
 }
 
 export const editModel = async(id,updatedModel)=>{
-   await axios.put(`${BASE_URL}/bizPro/${id}`,updatedModel)
+   await axios.put(`${BASE_URL}/edit/${id}`,updatedModel)
 }
 
 export const postModel = async(newModel)=>{

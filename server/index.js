@@ -39,7 +39,22 @@ app.get('/api/bizPro', async(req,res)=>{
     message:"data get succesfuully"
   })
 })
-
+// app.get("/api/bizPro", async(req,res)=>{
+//   const {name}=req.query
+//   const allModels = await bizProModel.find();
+//   if(name===undefined){
+//     res.status(200).send({
+//       data:allModels,
+//       message:"data get success!"
+//     })
+//   }
+//   else{
+//     res.status(200).send({
+//       data: allModels.filter((x)=>x.name.toLowerCase().trim().includes(name.toLowerCase().trim())),
+//       message:"data get success!"
+//     })
+//   }
+// })
 app.get('/api/bizPro/:id',(req,res)=>{
   const id = req.params.id
   const modelById =  bizProModel.findById(id).then((model)=>{

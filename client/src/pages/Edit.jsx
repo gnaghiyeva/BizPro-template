@@ -8,17 +8,17 @@ import { editModel, getModelById } from '../api/requests';
 import { Button } from '@mui/material';
 const Edit = () => {
   const [models,setModels] = useModelContext()
-  const [model,setModel] = useState({})
   const {id} = useParams()
+  const [model,setModel] = useState({})
   const navigate = useNavigate()
 
   useEffect(()=>{
     getModelById(id).then((res)=>{
       setModel(res)
-      formik.values.imageURL = res.data.imageURL;
-      formik.values.name = res.data.name;
-      formik.values.desc = res.data.desc;
-      formik.values.more = res.data.more
+      console.log(res)
+      formik.values.imageURL = res.imageURL;
+      formik.values.name = res.desc;
+      formik.values.more = res.more
 
     })
    
@@ -43,23 +43,20 @@ const Edit = () => {
     validationSchema: ModelValidation,
     onSubmit:handleEdit
     
-  },
- 
-  
-  )
+  })
   
   return (
    <>
    <section >
     <h1 style={{textAlign:'center'}}>Edit Page</h1>
     <form style={{display:'flex', justifyContent:'center', flexDirection:'column', width:'60%', margin:'0 auto'}}>
-    <TextField name='imageURL' onChange={formik.handleChange} onBlur={formik.onBlur} value={formik.values.imageURL} id="outlined-basic" label="Outlined" variant="outlined" /><br/>
+    <TextField type='text' name='imageURL' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.imageURL} id="outlined-basic" label="imageURL" variant="outlined" /><br/>
     {formik.errors.imageURL && formik.touched.imageURL && (<span>{formik.errors.imageURL}</span>)}
-    <TextField name='name' onChange={formik.handleChange} onBlur={formik.onBlur} value={formik.values.name} id="outlined-basic" label="Outlined" variant="outlined" /><br/>
+    <TextField type='text' name='name' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.name} id="outlined-basic" label="name" variant="outlined" /><br/>
     {formik.errors.name && formik.touched.name && (<span>{formik.errors.name}</span>)}
-    <TextField name='desc' onChange={formik.handleChange} onBlur={formik.onBlur} value={formik.values.desc} id="outlined-basic" label="Outlined" variant="outlined" /><br/>
+    <TextField type='text' name='desc' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.desc} id="outlined-basic" label="desc" variant="outlined" /><br/>
     {formik.errors.desc && formik.touched.desc && (<span>{formik.errors.desc}</span>)}
-    <TextField name='more' onChange={formik.handleChange} onBlur={formik.onBlur} value={formik.values.more} id="outlined-basic" label="Outlined" variant="outlined" />
+    <TextField type='text' name='more' onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.more} id="outlined-basic" label="more" variant="outlined" />
     {formik.errors.more && formik.touched.more && (<span>{formik.errors.more}</span>)}
     <Button type='submit'>Edit</Button>
     </form>

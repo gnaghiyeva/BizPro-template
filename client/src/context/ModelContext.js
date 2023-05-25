@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 const ModelContext = createContext();
 
 export const ModelContextProvider = ({children}) => {
@@ -10,4 +10,4 @@ export const ModelContextProvider = ({children}) => {
   )
 }
 
-export const useModelContext = () =>createContext(ModelContext)
+export const useModelContext = () =>useContext(ModelContext)
