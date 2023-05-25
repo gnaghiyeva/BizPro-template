@@ -1,0 +1,9 @@
+.hero{
+  background-image: url("https://preview.colorlib.com/theme/bizpro/images/home/slide-2.jpg.webp");  
+  padding: 300px 0
+}
+
+.hero_article{
+    text-align: center;
+    color: white;
+}
