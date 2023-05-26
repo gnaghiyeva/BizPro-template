@@ -33,7 +33,7 @@ export const getModelById = async(id)=>{
 
 export const deleteModel = async(id)=>{
    let deletedModel
-    deletedModel= await axios.delete(`${BASE_URL}/bizPro/${id}`).then((res)=>{
+    await axios.delete(`${BASE_URL}/bizPro/${id}`).then((res)=>{
         deletedModel=res.data
     })
     return deletedModel

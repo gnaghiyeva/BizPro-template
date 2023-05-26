@@ -16,13 +16,15 @@ const About = () => {
   useEffect(() => {
     getAllModels().then((res) => {
       setModels(res.data)
+      
     })
-  })
+  },[])
 
 
   function handleChange(e){
     getAllModels(e.target.value).then((res)=>{
-      setModels(res)
+      setModels(res.data)
+      
     })
   }
   return (
