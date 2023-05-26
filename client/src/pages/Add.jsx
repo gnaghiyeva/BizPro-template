@@ -16,8 +16,8 @@ const Add = () => {
     initialValues:{
       imageURL:'',
       name:'',
-      title:'',
-      desc:''
+      desc:'',
+      more:''
     },
     validationSchema:ModelValidation,
     onSubmit:handleSubmit,

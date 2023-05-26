@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 
-const ModelContext = createContext();
+const ModelContext = createContext()
 
 export const ModelContextProvider = ({children}) => {
     const [models,setModels] = useState([])
@@ -11,4 +11,4 @@ export const ModelContextProvider = ({children}) => {
   )
 }
 
-export const useModelContext = () =>useContext(ModelContext)
+export const useModelContext = () => useContext(ModelContext)

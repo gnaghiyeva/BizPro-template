@@ -11,6 +11,7 @@ import aboutStyle from '../styles/about.module.css'
 import Swal from 'sweetalert2'
 import {Link} from 'react-router-dom'
 import { TextField } from '@mui/material';
+
 const About = () => {
   const [models, setModels] = useState([])
   useEffect(() => {
@@ -42,7 +43,6 @@ const About = () => {
           id="outlined-basic"
           label="Search Author"
           variant="outlined"/>
-
         
         <Grid className={aboutStyle.about_row} container spacing={3} style={{width:'70%', margin:'0 auto'}} >
           {models && models.map((model) => {

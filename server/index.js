@@ -31,35 +31,35 @@ app.post('/api/bizPro', async (req,res)=>{
   res.status(201).send("model created succesfully")
 })
 
-app.get('/api/bizPro', async(req,res)=>{
+// app.get('/api/bizPro', async(req,res)=>{
   
-  const allModels = await bizProModel.find()
-  res.status(200).send({
-    data:allModels,
-    message:"data get succesfuully"
-  })
-})
-// app.get("/api/bizPro", async(req,res)=>{
-//   const {name}=req.query
-//   const allModels = await bizProModel.find();
-//   if(name===undefined){
-//     res.status(200).send({
-//       data:allModels,
-//       message:"data get success!"
-//     })
-//   }
-//   else{
-//     res.status(200).send({
-//       data: allModels.filter((x)=>x.name.toLowerCase().trim().includes(name.toLowerCase().trim())),
-//       message:"data get success!"
-//     })
-//   }
+//   const allModels = await bizProModel.find()
+//   res.status(200).send({
+//     data:allModels,
+//     message:"data get succesfuully"
+//   })
 // })
+app.get("/api/bizPro", async(req,res)=>{
+  const {name}=req.query
+  const allModels = await bizProModel.find();
+  if(name===undefined){
+    res.status(200).send({
+      data:allModels,
+      message:"data get success!"
+    })
+  }
+  else{
+    res.status(200).send({
+      data: allModels.filter((x)=>x.name.toLowerCase().trim().includes(name.toLowerCase().trim())),
+      message:"data get success!"
+    })
+  }
+})
 app.get('/api/bizPro/:id',(req,res)=>{
   const id = req.params.id
-  const modelById =  bizProModel.findById(id).then((model)=>{
+  bizProModel.findById(id).then((model)=>{
     res.status(200).send({
-      data:modelById,
+      data:model,
       message:'data get  success'
     })
 
@@ -86,16 +86,13 @@ app.delete("/api/bizPro/:id", async(req,res)=>{
 
 app.put("/api/bizPro/:id", async(req,res)=>{
   const id = req.params.id;
-  const {imageURL,name, desc,more} =req.body
+  const {imageURL,name, desc,more} = req.body
   const existedModel = await bizProModel.findByIdAndUpdate(id,{imageURL:imageURL, name:name, desc:desc, more:more})
   if(existedModel==undefined){
     res.status(204).send('data not found')
   }
   else{
-    res.status(200).send({
-      data:existedModel,
-      message:'data edited succesfuly'
-    })
+    res.status(200).send('data edited succesfuly')
   }
 })
 

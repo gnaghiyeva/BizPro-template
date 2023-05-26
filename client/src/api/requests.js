@@ -27,8 +27,8 @@ export const getModelById = async(id)=>{
     let globalData;
     await axios.get(`${BASE_URL}/bizPro/${id}`).then((res)=>{
         globalData=res.data
-    })
-    return globalData
+        })
+        return globalData
 }
 
 export const deleteModel = async(id)=>{
@@ -39,10 +39,10 @@ export const deleteModel = async(id)=>{
     return deletedModel
 }
 
-export const editModel = async(id,updatedModel)=>{
-   await axios.put(`${BASE_URL}/edit/${id}`,updatedModel)
+export const editModel = (id,updatedModel)=>{
+   axios.put(`${BASE_URL}/bizPro/${id}`,updatedModel)
 }
 
-export const postModel = async(newModel)=>{
-    await axios.post(`${BASE_URL}/bizPro`,newModel)
+export const postModel = (newModel)=>{
+    axios.post(`${BASE_URL}/bizPro`,newModel)
 }
