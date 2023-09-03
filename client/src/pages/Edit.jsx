@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import {useNavigate, useParams } from 'react-router-dom'
 import { useFormik } from 'formik'
 import { ModelValidation } from "../validation/ModelValidation"
 import { editModel, getModelById } from '../api/requests';
@@ -11,7 +11,7 @@ const Edit = () => {
   const [models, setModels] = useModelContext();
   console.log('context', models)
   const { id } = useParams()
-  // console.log(id);
+  // console.log(id); 
   const navigate = useNavigate()
   const [model, setModel] = useState({})
   const [loading, setLoading] = useState(true)

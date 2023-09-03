@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import aboutStyle from '../styles/about.module.css'
 import Swal from 'sweetalert2'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { TextField } from '@mui/material';
 
 const About = () => {
@@ -17,15 +17,15 @@ const About = () => {
   useEffect(() => {
     getAllModels().then((res) => {
       setModels(res.data)
-      
+
     })
-  },[])
+  }, [])
 
 
-  function handleChange(e){
-    getAllModels(e.target.value).then((res)=>{
+  function handleChange(e) {
+    getAllModels(e.target.value).then((res) => {
       setModels(res.data)
-      
+
     })
   }
   return (
@@ -36,19 +36,20 @@ const About = () => {
           <h1>ABOUT OUR BIZPRO</h1>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br />
             Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+            <div style={{margin:'0 auto'}}>
+          <TextField
+            onChange={(e) => handleChange(e)}
+            id="outlined-basic"
+            label="Search Author"
+            variant="outlined" />
+        </div>
         </article>
-
-        <TextField  
-          onChange={(e)=>handleChange(e)}
-          id="outlined-basic"
-          label="Search Author"
-          variant="outlined"/>
         
-        <Grid className={aboutStyle.about_row} container spacing={3} style={{width:'70%', margin:'0 auto'}} >
+        <Grid className={aboutStyle.about_row} container spacing={3} style={{ width: '70%', margin: '0 auto' }} >
           {models && models.map((model) => {
             return (
-              <Grid className={aboutStyle.about_col}  item lg={3} md={6} xs={12} >
-                <Card className={aboutStyle.card} sx={{ maxWidth: 345 }}>
+              <Grid className={aboutStyle.about_col} item lg={3} md={6} xs={12} >
+                <Card className={aboutStyle.card}>
                   <CardMedia
                     sx={{ height: 340 }}
                     image={model.imageURL}
@@ -59,14 +60,14 @@ const About = () => {
                       {model.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                     {model.desc}
+                      {model.desc}
                     </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small">{model.more}</Button>
                   </CardActions>
-                  <div style={{display:'flex',justifyContent:'center', gap:'15px'}}>
-                    <Button size="small" onClick={()=>{
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: '15px' }}>
+                    <Button size="small" onClick={() => {
                       Swal.fire({
                         title: 'Are you sure?',
                         text: "You won't be able to revert this!",
@@ -77,7 +78,7 @@ const About = () => {
                         confirmButtonText: 'Yes, delete it!'
                       }).then((result) => {
                         if (result.isConfirmed) {
-                          deleteModel(model._id).then((res)=>{
+                          deleteModel(model._id).then((res) => {
                             Swal.fire(
                               'Deleted!',
                               'Your file has been deleted.',
@@ -85,11 +86,11 @@ const About = () => {
                             )
 
                           })
-                          setModels(models.filter((x)=>x._id!==model._id))
+                          setModels(models.filter((x) => x._id !== model._id))
                         }
                       })
                     }}>Delete</Button>
-                    <Button variant='contained'  size="small"><Link style={{color:'white', textDecoration:'none'}} to={`/edit/${model._id}`}>Edit</Link></Button>
+                    <Button variant='contained' size="small"><Link style={{ color: 'white', textDecoration: 'none' }} to={`/edit/${model._id}`}>Edit</Link></Button>
                   </div>
                 </Card>
               </Grid>

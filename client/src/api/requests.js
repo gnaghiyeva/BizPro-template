@@ -8,21 +8,21 @@ import axios from 'axios'
 //    return globalData;
 // }
 
-export const getAllModels = async(name)=>{
-    let globalData;
-    let URL;
-    if(!name){
-        URL=BASE_URL+"/bizPro"
-    }
-    else{
-        URL=BASE_URL+"/bizPro/"+`?name=${name}`
-    }
+export const getAllModels = async (name) => {
+  let globalData;
+  let URL;
+  if (!name) {
+    URL = `${BASE_URL}/bizPro`;
+  } else {
+    URL = `${BASE_URL}/bizPro/?name=${name}`;
+  }
 
-    await axios.get(URL).then((res)=>{
-        globalData=res.data
-    })
-    return globalData
-}
+  await axios.get(URL).then((res) => {
+    globalData = res.data;
+  });
+  return globalData;
+};
+
 export const getModelById = async(id)=>{
     let globalData;
     await axios.get(`${BASE_URL}/bizPro/${id}`).then((res)=>{
